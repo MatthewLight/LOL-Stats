@@ -6,9 +6,18 @@ const app = express();
 
 require('./routes/mainRoute')(app);
 
-fetch(credentials.summoners_byname_url + credentials.api_key)
-  .then(response => response.json())
-  .then(data => console.log(data));
+// fetch(credentials.summoners_byname_url + credentials.api_key)
+//   .then(response => response.json())
+//   .then(data => console.log(data));
 
-const PORT = process.env.PORT || 3000;
+const fetchAccount = async () => {
+  const res = await fetch(credentials.summoners_byname_url + credentials.api_key);
+  const json = await res.json();
+
+  console.log(json);
+}
+
+fetchAccount();
+
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Running on port: ${PORT}`));
